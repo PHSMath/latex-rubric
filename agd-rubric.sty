@@ -13,7 +13,7 @@
 
 \usepackage{hyperref}
 
-\usepackage[margin=1in,letterpaper]{geometry}
+\usepackage[margin=0.5in,letterpaper]{geometry}
 
 \usepackage[T1]{fontenc}
 \usepackage{libertine}
@@ -30,7 +30,7 @@
 \newcounter{colnum}
 \newlength{\colwidth}
 \newlength{\firstcolwidth}
-\setlength{\firstcolwidth}{2cm}
+\setlength{\firstcolwidth}{4cm}
 
 % Set up \therubric to access parameters of \rubric
 \newcommand{\therubric}[1]{\csname rubric@#1\endcsname}
@@ -47,19 +47,19 @@
   \vspace{\droptitle}
   \begin{center}
     \textsc{\textbf{\large \therubric{topprompt}:}} \hrulefill \\[\baselineskip]
-    \textbf{\Huge Grading rubric: \therubric{thing}} \\[\baselineskip]
+    \textbf{\Huge Grading Rubric: \therubric{thing}} \\[\baselineskip]
     \textsc{\normalsize \therubric{course} (\therubric{term})}
   \end{center}
 }
 
 \newenvironment{rubrictable}[1]{
-  \setcounter{totalcolnum}{#1}
+  \setcounter{totalcolnum}{#1+1}
   \setlength{\colwidth}{\textwidth - \firstcolwidth*\real{2}}
   \setlength{\colwidth}{\colwidth / \real{\value{totalcolnum}}}
   \begin{center}
     \begin{tabular}{p{\firstcolwidth} | *{\value{totalcolnum}}{p{\colwidth}}}
       \toprule
-      \forloop{colnum}{0}{\value{colnum} < \value{totalcolnum}}{
+      \forloop{colnum}{1}{\value{colnum} < \value{totalcolnum}}{
         & \textbf{\Large \arabic{colnum}}
       } \\ \midrule
     }
@@ -73,4 +73,4 @@
   \textbf{\Large #1} #2 \\[2eX]
 }
 
-\newcommand{\rubricdesc}[2]{& \textbf{#1} {\raggedright #2}}
+\newcommand{\rubricdesc}[2]{& \textbf{#1}{\raggedright #2}}
